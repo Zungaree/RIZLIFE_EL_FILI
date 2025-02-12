@@ -1,0 +1,261 @@
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #DEB887;
+    --background-color: #F5E6D3;
+    --page-color: #FFF8DC;
+    --text-color: #4A4A4A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #2C1810; /* Dark wood-like background */
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem;
+    background-image: linear-gradient(45deg, #241309 25%, transparent 25%),
+        linear-gradient(-45deg, #241309 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #241309 75%),
+        linear-gradient(-45deg, transparent 75%, #241309 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+nav {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--text-color);
+}
+
+.book {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--page-color);
+    border-radius: 10px;
+    border-left: 30px solid var(--primary-color);
+    border-right: 2px solid #0002;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 0, 0.3) inset;
+    overflow: hidden;
+    min-height: 800px;
+    position: relative;
+    transform: perspective(1000px) rotateX(2deg);
+}
+
+#pages {
+    position: relative;
+    min-height: 800px;
+    perspective: 1000px;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease-in-out;
+    background-color: var(--page-color);
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page.exit {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.05));
+    pointer-events: none;
+}
+
+.content-grid, .gallery-grid, .hero-section {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-section {
+    background-color: var(--secondary-color);
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.character-card {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.gallery-item {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.image-placeholder {
+    width: 100%;
+    padding-bottom: 100%; /* Creates a square aspect ratio */
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.caption {
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.info-box ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+.info-box li {
+    margin-bottom: 0.5rem;
+}
+
+/* Element animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations to elements when page becomes active */
+.page.active h1 {
+    animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+.page.active .hero-section {
+    animation: fadeIn 0.6s ease-out 0.4s both;
+}
+
+.page.active .info-box,
+.page.active .gallery-item,
+.page.active .character-card {
+    opacity: 0;
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Stagger the animations for grid items */
+.page.active .content-grid .info-box:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.page.active .content-grid .info-box:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.page.active .content-grid .info-box:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+/* Gallery items stagger */
+.page.active .gallery-grid .gallery-item:nth-child(1) { animation-delay: 0.3s; }
+.page.active .gallery-grid .gallery-item:nth-child(2) { animation-delay: 0.4s; }
+.page.active .gallery-grid .gallery-item:nth-child(3) { animation-delay: 0.5s; }
+.page.active .gallery-grid .gallery-item:nth-child(4) { animation-delay: 0.6s; }
+.page.active .gallery-grid .gallery-item:nth-child(5) { animation-delay: 0.7s; }
+.page.active .gallery-grid .gallery-item:nth-child(6) { animation-delay: 0.8s; }
+
+/* Character cards stagger */
+.page.active .character-grid .character-card:nth-child(1) { animation-delay: 0.3s; }
+.page.active .character-grid .character-card:nth-child(2) { animation-delay: 0.4s; }
+.page.active .character-grid .character-card:nth-child(3) { animation-delay: 0.5s; }
+.page.active .character-grid .character-card:nth-child(4) { animation-delay: 0.6s; } 
