@@ -207,14 +207,4 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto'; // Re-enable scrolling
         });
     }
-
-    // Remove these event listeners since they're now handled in showImage function
-    const prevButtonOld = document.getElementById('prev-button');
-    const nextButtonOld = document.getElementById('next-button');
-    if (prevButtonOld) {
-        prevButtonOld.replaceWith(prevButtonOld.cloneNode(true));
-    }
-    if (nextButtonOld) {
-        nextButtonOld.replaceWith(nextButtonOld.cloneNode(true));
-    }
-}); 
+});
