@@ -23,11 +23,40 @@ function showImage(imageSrc) {
     const viewerCaption = imageViewer.querySelector('.gallery-caption');
     
     // Update image and caption
-    viewerImage.src = galleryItems[currentImageIndex].src;
+    viewerImage.src = imageSrc;
     viewerCaption.textContent = galleryItems[currentImageIndex].caption;
     
     // Show the viewer
     imageViewer.style.display = 'flex';
+
+    // Add event listeners for navigation buttons
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+
+    // Remove existing event listeners if any
+    prevButton.replaceWith(prevButton.cloneNode(true));
+    nextButton.replaceWith(nextButton.cloneNode(true));
+
+    // Get the fresh elements
+    const newPrevButton = document.getElementById('prev-button');
+    const newNextButton = document.getElementById('next-button');
+
+    // Add new event listeners
+    newPrevButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+        const item = galleryItems[currentImageIndex];
+        viewerImage.src = item.src;
+        viewerCaption.textContent = item.caption;
+    });
+
+    newNextButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+        const item = galleryItems[currentImageIndex];
+        viewerImage.src = item.src;
+        viewerCaption.textContent = item.caption;
+    });
 }
 
 // Add function to go back to gallery
@@ -179,27 +208,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle navigation buttons
-    document.getElementById('prev-button').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
-        const item = galleryItems[currentImageIndex];
-        document.getElementById('viewer-image').src = item.src;
-        document.querySelector('.image-viewer .gallery-caption').textContent = item.caption;
-    });
-
-    document.getElementById('next-button').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
-        const item = galleryItems[currentImageIndex];
-        document.getElementById('viewer-image').src = item.src;
-        document.querySelector('.image-viewer .gallery-caption').textContent = item.caption;
-    });
-
-    // Close on ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            showGallery();
-        }
-    });
+    // Remove these event listeners since they're now handled in showImage function
+    const prevButtonOld = document.getElementById('prev-button');
+    const nextButtonOld = document.getElementById('next-button');
+    if (prevButtonOld) {
+        prevButtonOld.replaceWith(prevButtonOld.cloneNode(true));
+    }
+    if (nextButtonOld) {
+        nextButtonOld.replaceWith(nextButtonOld.cloneNode(true));
+    }
 }); 
