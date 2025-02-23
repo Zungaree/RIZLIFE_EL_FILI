@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - The Life of Rizal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="rizal-portrait.jpg" alt="Rizal Portrait">
+            <span class="logo-text">The Life of Rizal</span>
+        </div>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="#">Home ▼</a>
+                <div class="dropdown-content">
+                    <a href="home.html#introduction" class="tab-link" data-tab="introduction">Introduction</a>
+                    <a href="home.html#biography" class="tab-link" data-tab="biography">Biography</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Works ▼</a>
+                <div class="dropdown-content">
+                    <a href="works.html#historical" class="tab-link" data-tab="historical">Historical Context</a>
+                    <a href="works.html#plot" class="tab-link" data-tab="plot">Plot Summary</a>
+                    <a href="works.html#characters" class="tab-link" data-tab="characters">Key Characters</a>
+                </div>
+            </div>
+            <a href="#analysis">Analysis ▼</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="#resources">Resources</a>
+        </div>
+    </nav>
+
+    <main class="gallery-content">
+        <div class="gallery-title" style="background-color: #FBF7F0;">
+            <h1>Gallery</h1>
+        
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="First edition cover of El Filibusterismo">
+                </div>
+                <p class="gallery-caption">First edition cover of El Filibusterismo</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="Portrait of José Rizal">
+                </div>
+                <p class="gallery-caption">Portrait of José Rizal</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="Portrait of José Rizal">
+                </div>
+                <p class="gallery-caption">Portrait of José Rizal</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="Original manuscript page">
+                </div>
+                <p class="gallery-caption">Original manuscript page</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="Rizal writing El Filibusterismo">
+                </div>
+                <p class="gallery-caption">Rizal writing El Filibusterismo</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+                <div class="gallery-image-container">
+                    <img src="NAO.jpg" alt="Historical photo from the period">
+                </div>
+                <p class="gallery-caption">Historical photo from the period</p>
+            </div>
+        </div>
+    
+
+        <!-- Image viewer that replaces gallery grid -->
+        <div class="image-viewer" style="display: none;">
+            <button class="nav-button" id="prev-button">←</button>
+            <div class="gallery-image-container">
+                <img id="viewer-image" src="" alt="Selected Image">
+                <p style="font-size:160%;" class="gallery-caption"></p>
+            </div>
+            <button class="nav-button" id="next-button">→</button>
+        </div>
+    </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 The Life of Rizal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
