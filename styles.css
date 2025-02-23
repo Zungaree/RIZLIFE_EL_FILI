@@ -826,9 +826,9 @@ footer {
 
 .gallery-image-container {
     width: 100%;
-
-    background-color: #F1E4D8;
-    border-radius: 8px;
+    padding: 1rem;
+    background-color: #FFFFFF;
+    
     overflow: hidden;
     margin-bottom: 1rem;
 }
@@ -954,7 +954,7 @@ footer {
     height: auto; /* Maintain aspect ratio */
     display: block; /* Make the image a block element */
     margin: 0 auto; /* Center the image horizontally */
-    border-radius: 8px; /* Match the gallery item image border radius */
+     /* Match the gallery item image border radius */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Match the gallery item image shadow */
 }
 
