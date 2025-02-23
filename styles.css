@@ -1,0 +1,985 @@
+:root {
+    --primary-brown: #6D4C4C;
+    --cream-bg: #F4F1E9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* First, let's set up the body and html for a sticky footer */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Inknut Antiqua', serif;
+    background-color: var(--cream-bg);
+}
+
+/* Main content should take up remaining space */
+main {
+    flex: 1 0 auto;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--primary-brown);
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.19rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 300;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+
+.hero-content {
+    background-color: #F1E4D8;
+    padding: 4rem 2rem;
+    width: 100%;
+    max-width: none;
+}
+
+.hero h1 {
+    font-size: 2.88rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.08rem;
+    margin-bottom: 3rem;
+}
+
+.cta-button {
+    margin-top: 3rem;
+    background-color: var(--primary-brown);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    min-width: 400px;
+    display: inline-block;
+    text-align: center;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    background-color: #5a3f3f;
+}
+
+/* Dropdown styles */
+.nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-item > a {
+    padding: 0.5rem 0;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #8B6565;
+    min-width: 240px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.nav-item:hover .dropdown-content {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transform: translateY(-5px);
+    opacity: 0;
+    position: relative;
+    background: transparent;
+}
+
+/* Show dropdown items on hover */
+.nav-item:hover .dropdown-content a {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Stagger the animation for each item */
+.nav-item:hover .dropdown-content a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.nav-item:hover .dropdown-content a:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.nav-item:hover .dropdown-content a:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    padding-left: 2.5rem;
+}
+
+/* Add indicator for hover */
+.dropdown-content a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+    margin-left: 1rem;
+}
+
+.dropdown-content a:hover::before {
+    width: 15px;
+}
+
+.nav-item:hover .dropdown-content a:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.nav-item:hover .dropdown-content a:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #8B6565;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section h1 {
+    font-size: 2.5rem;
+    color: var(--primary-brown);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Introduction Section */
+.content-wrapper {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.text-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.image-content {
+    flex: 1;
+}
+
+.image-content img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Biography Timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-brown);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.date {
+    width: 120px;
+    padding: 0.5rem;
+    background-color: var(--primary-brown);
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.event {
+    width: calc(50% - 80px);
+    padding: 1.5rem;
+    background-color: #F1E4D8;
+    border-radius: 8px;
+}
+
+.event h3 {
+    color: var(--primary-brown);
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    flex-shrink: 0;
+    background-color: var(--primary-brown);
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: auto; /* Push to bottom if content is short */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .timeline::before {
+        left: 0;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+    }
+
+    .timeline-item:nth-child(odd) {
+        flex-direction: column;
+    }
+
+    .event {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+    }
+
+    .date {
+        margin-bottom: 1rem;
+        margin-left: 40px;
+    }
+}
+
+/* Add these styles for the home page */
+.home-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 2rem 0;
+    background-color: white;
+}
+
+/* Update the tab navigation styles */
+.tab-navigation {
+    display: flex;
+    gap: 0;
+    margin-left: 8rem;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.tab {
+    text-decoration: none;
+    padding: 0.7rem 3rem;  /* Increased padding */
+    font-size: 1rem;
+    position: relative;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+    background: transparent;  /* Default transparent background */
+    color: #000;
+    transition: all 0.2s ease;
+}
+
+/* Active tab style */
+.tab.active {
+    background-color: #83615F;  /* Brown color for active tab */
+    color: white;
+    z-index: 2;
+    position: relative;
+}
+
+/* Inactive tab style */
+.tab:not(.active) {
+    background-color: #E5D1C3;  /* Lighter brown for inactive */
+    color: #000;
+}
+
+/* Content container adjustments */
+.content-container {
+    background-color: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1;
+    min-height: 600px; /* Set minimum height to ensure proper expansion */
+}
+
+/* Content box adjustments */
+.content-box {
+    padding: 0 8rem;
+}
+
+.content-box h1 {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.content-box h2 {
+    font-size: 2rem;
+    color: #000;
+    margin: 3rem 0 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.content-box p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tab content animations */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tab button animations */
+.tab {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #83615F;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab:hover::after {
+    transform: scaleX(1);
+}
+
+.tab.active::after {
+    transform: scaleX(1);
+}
+
+/* Update existing styles */
+.intro-section, .why-matters-section {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.intro-section:last-child, .why-matters-section:last-child {
+    margin-bottom: 0;
+}
+
+.intro-section h1, .why-matters-section h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.intro-section p, .why-matters-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Biography styles */
+.bio-profile {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.bio-image-container {
+    width: 200px;
+    height: 200px;
+    background-color: #83615F;
+    border-radius: 16px;
+    padding: 1rem;
+    flex-shrink: 0;
+}
+
+.bio-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.bio-details {
+    flex: 1;
+}
+
+.bio-details p {
+    text-align: left;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.bio-details p:last-child {
+    margin-bottom: 0;
+}
+
+.bio-details strong {
+    color: #83615F;
+}
+
+/* Quotes section */
+.quotes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.quote {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2rem;
+}
+
+.quote p {
+    margin: 0;
+    font-style: italic;
+}
+
+/* Update content container for biography */
+.content-container h1 {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.content-container h2 {
+    font-size: 2rem;
+    color: #000;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* Historical Context styles */
+.history-section,
+.comparison-section,
+.impact-section,
+.legacy-section {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.content-container h1 {
+    font-size: 1.8rem;
+    color: #000;
+    margin: 2rem 0 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.content-container h1:first-child {
+    margin-top: 0;
+}
+
+.history-section p,
+.comparison-section p,
+.impact-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.legacy-section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.legacy-section li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.legacy-section li:last-child {
+    margin-bottom: 0;
+}
+
+.legacy-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #83615F;
+}
+
+/* Character Grid styles */
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.character-card {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Remove hover effect when card is expanded */
+.character-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 
+        20px 20px 30px rgba(0,0,0,0.1),
+        -5px -5px 30px rgba(255,255,255,0.8);
+}
+
+/* Expanded state styles */
+.character-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7); /* Make the selected card 30% smaller */
+    z-index: 1000;
+    width: calc(100% - 16rem); /* Match content-box width */
+    height: auto;
+    background-color: #F1E4D8;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    padding: 4rem;
+    overflow-y: auto;
+}
+
+/* Update image and info to support 3D transforms */
+.character-image, .character-info {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(0);
+}
+
+/* Back button styles */
+.back-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #83615F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Show back button when card is expanded */
+.character-card.expanded .back-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-button:hover {
+    background-color: #6D4C4C;
+}
+
+/* Overlay for expanded state */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.character-info {
+    max-width: 75%; /* Leave space for image */
+}
+
+.character-info h1 {
+    font-size: 1.4rem;
+    color: #000;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-align: left;
+    margin-top: 0;
+}
+
+.character-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+    margin: 0;
+    text-align: left;
+}
+
+.character-image {
+    width: 80px;
+    height: 80px;
+    background-color: #83615F;
+    border-radius: 12px;
+    padding: 0.5rem;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+}
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Gallery styles */
+.gallery-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 4rem 8rem;
+    background-color: var(--cream-bg);
+}
+
+.gallery-content h1 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.gallery-image-container {
+    width: 100%;
+
+    background-color: #F1E4D8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.gallery-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    font-size: 1rem;
+    color: #000;
+    text-align: center;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+/* Responsive gallery */
+@media (max-width: 1200px) {
+    .gallery-content {
+        padding: 2rem 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Gallery title styles */
+.gallery-title {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-in-out; /* Add fade-in effect */
+}
+
+/* Show effect for gallery items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Selected image container styles */
+.selected-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(129, 97, 95, 0.95); /* Semi-transparent brown background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.selected-image-container img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+#close-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: #83615F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+#close-button:hover {
+    background-color: #6D4C4C;
+}
+
+/* Add hover effect to gallery items */
+.gallery-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Image viewer styles */
+.image-viewer {
+    display: none; /* Initially hidden */
+    background-color: #F1E4D8; /* Same background as gallery items */
+    border-radius: 16px; /* Match the gallery item border radius */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Match the gallery item shadow */
+    padding: 1rem; /* Padding to match gallery items */
+    margin: 0 auto; /* Center the viewer */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Space between image and buttons */
+    height: auto; /* Allow height to adjust based on content */
+}
+
+.image-viewer img {
+    max-width: 100%; /* Full width of the viewer */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Make the image a block element */
+    margin: 0 auto; /* Center the image horizontally */
+    border-radius: 8px; /* Match the gallery item image border radius */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Match the gallery item image shadow */
+}
+
+.nav-button {
+    background-color: #83615F; /* Match the gallery item button color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+}
+
+.nav-button:hover {
+    background-color: #6D4C4C; /* Match the hover effect */
+}
+
+/* Center the caption */
+.image-viewer .gallery-caption {
+    text-align: center;
+    margin: 0;
+    padding: 0.5rem 0;
+    font-size: 160%;
+} 
