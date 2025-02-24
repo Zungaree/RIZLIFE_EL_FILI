@@ -600,10 +600,114 @@ footer {
     text-align: center;
 }
 
-/* Historical Context styles */
-.history-section,
-.comparison-section,
-.impact-section,
+/* Updated Historical Context styles */
+.history-section {
+    background-color: #FBF7F0;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.history-section:hover {
+    transform: translateY(-5px);
+}
+
+.history-section h1 {
+    color: #83615F;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.history-section .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: #83615F;
+    border-radius: 50%;
+    color: #FBF7F0;
+}
+
+.history-section .icon i {
+    font-size: 1rem;
+}
+
+.history-section p {
+    color: #333;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: left;
+    margin: 0;
+}
+
+.history-section em {
+    color: #83615F;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Ensure proper spacing between sections */
+.history-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Comparison section */
+.comparison-section {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.comparison-section h2 {
+    font-size: 2rem;
+    color: var(--primary-brown);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.comparison-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Impact section */
+.impact-section {
+    background-color: #F1E4D8;
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.impact-section h2 {
+    font-size: 2rem;
+    color: var(--primary-brown);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.impact-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Legacy section */
 .legacy-section {
     background-color: #F1E4D8;
     border-radius: 24px;
@@ -612,27 +716,11 @@ footer {
     box-shadow: 0 4px 16px rgba(0,0,0,0.05);
 }
 
-.content-container h1 {
-    font-size: 1.8rem;
-    color: #000;
-    margin: 2rem 0 1rem;
+.legacy-section h2 {
+    font-size: 2rem;
+    color: var(--primary-brown);
+    margin-bottom: 1.5rem;
     text-align: center;
-    font-weight: 500;
-}
-
-.content-container h1:first-child {
-    margin-top: 0;
-}
-
-.history-section p,
-.comparison-section p,
-.impact-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #000;
-    text-align: center;
-    max-width: 90%;
-    margin: 0 auto;
 }
 
 .legacy-section ul {
@@ -667,126 +755,76 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    padding: 1rem 0;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .character-card {
-    background-color: #F1E4D8;
-    border-radius: 24px;
-    padding: 2.5rem;
+    background-color: #5C4742;
+    border-radius: 16px;
+    overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Remove hover effect when card is expanded */
-.character-card:hover {
-    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-    box-shadow: 
-        20px 20px 30px rgba(0,0,0,0.1),
-        -5px -5px 30px rgba(255,255,255,0.8);
-}
-
-/* Expanded state styles */
-.character-card.expanded {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.7); /* Make the selected card 30% smaller */
-    z-index: 1000;
-    width: calc(100% - 16rem); /* Match content-box width */
+.character-card video {
+    width: 100%;
     height: auto;
-    background-color: #F1E4D8;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    padding: 4rem;
-    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    object-fit: cover;
 }
 
-/* Update image and info to support 3D transforms */
-.character-image, .character-info {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateZ(0);
+.character-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Back button styles */
-.back-button {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    padding: 0.8rem 1.5rem;
-    background-color: #83615F;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+/* Remove the hover scale effect for video */
+.character-card:hover video {
+    transform: none;
 }
 
-/* Show back button when card is expanded */
-.character-card.expanded .back-button {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-button:hover {
-    background-color: #6D4C4C;
-}
-
-/* Overlay for expanded state */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
-}
-
-.overlay.active {
-    display: block;
-}
-
-.character-info {
-    max-width: 75%; /* Leave space for image */
-}
-
-.character-info h1 {
-    font-size: 1.4rem;
-    color: #000;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    text-align: left;
-    margin-top: 0;
-}
-
-.character-info p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #000;
-    margin: 0;
-    text-align: left;
-}
-
-.character-image {
-    width: 80px;
-    height: 80px;
-    background-color: #83615F;
-    border-radius: 12px;
-    padding: 0.5rem;
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-}
-
-.character-image img {
+.character-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.character-card:hover img {
+    transform: scale(1.05);
+}
+
+.character-name {
+    padding: 1rem;
+    background-color: rgba(244, 241, 233, 0.9);
+    color: #5C4742;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .character-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+/* Remove old character card styles */
+.character-info,
+.character-image,
+.back-button {
+    display: none;
 }
 
 /* Gallery styles */
