@@ -935,7 +935,7 @@ footer {
     text-align: center;
     padding: 2rem;
     border-radius: 12px;
-    margin-bottom: 2rem;
+    
     animation: fadeIn 0.5s ease-in-out; /* Add fade-in effect */
 }
 
@@ -1011,6 +1011,7 @@ footer {
     background-color: #5C4742;
     padding: 20px;
     border-radius: 8px;
+    position: relative; /* Add this for absolute positioning of close button */
 }
 
 .image-viewer img {
@@ -1046,4 +1047,168 @@ footer {
     margin: 0;
     padding: 0.5rem 0;
     font-size: 160%;
+}
+
+.character-viewer {
+    border-radius: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background-color: #E6DFD7;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.character-detail {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0;
+    background-color: #E6DFD7;
+    padding: 0 5rem; /* Add padding for nav buttons */
+}
+
+.character-info {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2.5rem 2rem 2.5rem 0; /* Adjust padding */
+    text-align: left;
+}
+
+.character-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-right: 2rem;
+}
+
+.character-type {
+    display: inline-block;
+    background-color: #6D4C41;
+    color: white;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.character-info h2 {
+    color: #000000;
+    margin-bottom: 0.3rem;
+    font-size: 3.2rem;
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+}
+
+.character-info h3 {
+    color: #6D4C41;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.character-info p {
+    color: #333333;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    max-width: 95%;
+    opacity: 0.9;
+    text-align: left;
+    padding-right: 2rem;
+    margin: 0;
+}
+
+.character-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #F4F1ED;
+    border-radius: 16px;
+    margin: 1.5rem 0; /* Remove right margin */
+}
+
+.character-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #FBF7F0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    transform: scale(1.1);
+    color: #D4C5C2;
+}
+
+.close-button i {
+    font-size: 1.5rem;
+}
+
+/* Navigation buttons for characters */
+.nav-button.prev-char,
+.nav-button.next-char {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6D4C41;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button.prev-char i,
+.nav-button.next-char i {
+    font-size: 2rem;
+}
+
+.nav-button.prev-char {
+    left: 1rem;
+}
+
+.nav-button.next-char {
+    right: 1rem;
+}
+
+.nav-button.prev-char:hover,
+.nav-button.next-char:hover {
+    color: #8B6B61;
+    transform: translateY(-50%) scale(1.1);
 } 

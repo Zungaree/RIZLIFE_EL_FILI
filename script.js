@@ -8,6 +8,38 @@ const galleryItems = [
     { src: 'NAO.jpg', caption: 'Historical photo from the period' }
 ];
 
+let currentCharacterIndex = 0;
+const characters = [
+    { 
+        name: 'Simoun',
+        subtitle: 'Crisóstomo Ibarra',
+        type: 'PROTAGONIST',
+        image: 'SIMOUN.png',
+        description: 'Simoun is the protagonist of the novel and the alter ego of Crisóstomo Ibarra. Unlike the hopeful reformist in Noli Me Tángere, Simoun has become disillusioned with the idea of peaceful change. His transformation into a shadowy figure seeking revenge reflects the harsh realities of Spanish colonial rule, which crushed idealism and turned some individuals toward radical solutions.'
+    },
+    {
+        name: 'Basilio',
+        subtitle: 'Medical Student',
+        type: 'SUPPORTING CHARACTER',
+        image: 'BASILIO.png',
+        description: 'Basilio, a character from Noli Me Tángere, has grown into a diligent medical student. Having witnessed the suffering of his family under Spanish rule, he initially tries to distance himself from revolutionary activities and focus on his personal success. However, after Simoun reveals his plans, Basilio finds himself caught between his ambitions and the call for social change. The deaths of his loved ones push him toward resistance, symbolizing the awakening of the educated Filipino youth to the injustices of colonial rule.'
+    },
+    {
+        name: 'Isagani',
+        subtitle: 'Law Student',
+        type: 'SUPPORTING CHARACTER',
+        image: 'ISAGANI.png',
+        description: 'Isagani is a passionate poet and orator who believes in fighting for reform through education and enlightenment. His love for Paulita Gómez ends tragically when she chooses to marry Juanito Pelaez, a man who aligns himself with the Spanish authorities. His greatest act in the novel is preventing the bombing at the wedding, a moment that showcases his moral dilemma—he opposes the violent methods of Simoun but understands the need for change. Isagani represents the struggle of Filipinos who sought justice through non-violent means, believing in progress through knowledge rather than bloodshed.'
+    },
+    {
+        name: 'Kabesang Tale',
+        subtitle: 'Former Cabeza de Barangay',
+        type: 'SUPPORTING CHARACTER',
+        image: 'TALES.png',
+        description: 'A former cabeza de barangay who loses his land to the friars, representing the injustices faced by Filipino landowners under Spanish rule.'
+    }
+];
+
 function showImage(imageSrc) {
     // Find the clicked gallery item index
     const clickedItem = galleryItems.findIndex(item => item.src === imageSrc);
@@ -61,8 +93,23 @@ function showImage(imageSrc) {
 
 // Add function to go back to gallery
 function showGallery() {
-    document.querySelector('.gallery-grid').style.display = 'grid';
-    document.querySelector('.image-viewer').style.display = 'none';
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const imageViewer = document.querySelector('.image-viewer');
+    if (galleryGrid && imageViewer) {
+        galleryGrid.style.display = 'grid';
+        imageViewer.style.display = 'none';
+    }
+}
+
+function closeCharacterViewer() {
+    const characterViewer = document.querySelector('.character-viewer');
+    const contentContainer = document.querySelector('.content-container');
+    
+    // Hide the character viewer
+    characterViewer.style.display = 'none';
+    
+    // Show the main content
+    contentContainer.style.display = 'block';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -133,40 +180,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const characterCards = document.querySelectorAll('.character-card');
 
     characterCards.forEach(card => {
-        // Create back button
-        const backButton = document.createElement('button');
-        backButton.className = 'back-button';
-        backButton.textContent = '← Back';
-        card.appendChild(backButton);
-
-        // Handle card click
-        card.addEventListener('click', function(e) {
-            // If clicking the back button
-            if (e.target === backButton) {
-                closeCard(this);
-                return;
-            }
-
-            // If card is already expanded, do nothing
-            if (this.classList.contains('expanded')) {
-                return;
-            }
-
-            // Remove expanded class from any other cards
-            characterCards.forEach(c => {
-                c.classList.remove('expanded');
-                c.style.pointerEvents = 'auto'; // Re-enable hover effects
-            });
-
-            // Expand this card
-            this.classList.add('expanded');
-            this.style.pointerEvents = 'none'; // Disable hover effects on selected card
+        card.addEventListener('click', function() {
+            const characterName = this.querySelector('.character-name').textContent;
+            const characterImage = this.querySelector('img').src;
+            showCharacterViewer(characterName, characterImage);
         });
     });
 
-    function closeCard(card) {
-        card.classList.remove('expanded');
-        card.style.pointerEvents = 'auto'; // Re-enable hover effects
+    function showCharacterViewer(name, imageSrc) {
+        const characterViewer = document.querySelector('.character-viewer');
+        const viewerCharacter = document.getElementById('viewer-character');
+        const characterTitle = document.getElementById('character-title');
+        const characterSubtitle = document.getElementById('character-subtitle');
+        const characterType = document.querySelector('.character-type');
+        const characterDescription = document.getElementById('character-description');
+        const contentContainer = document.querySelector('.content-container');
+
+        // Find the character index
+        currentCharacterIndex = characters.findIndex(char => char.name === name);
+
+        // Set character details
+        updateCharacterDetails(currentCharacterIndex);
+
+        // Hide the main content and show the viewer
+        contentContainer.style.display = 'none';
+        characterViewer.style.display = 'flex';
+
+        // Add event listeners for navigation buttons
+        document.getElementById('prev-char').addEventListener('click', showPreviousCharacter);
+        document.getElementById('next-char').addEventListener('click', showNextCharacter);
+    }
+
+    function updateCharacterDetails(index) {
+        const character = characters[index];
+        document.getElementById('character-title').textContent = character.name;
+        document.getElementById('character-subtitle').textContent = character.subtitle;
+        document.querySelector('.character-type').textContent = character.type;
+        document.getElementById('character-description').textContent = character.description;
+        document.getElementById('viewer-character').src = character.image;
+    }
+
+    function showPreviousCharacter() {
+        currentCharacterIndex = (currentCharacterIndex - 1 + characters.length) % characters.length;
+        updateCharacterDetails(currentCharacterIndex);
+    }
+
+    function showNextCharacter() {
+        currentCharacterIndex = (currentCharacterIndex + 1) % characters.length;
+        updateCharacterDetails(currentCharacterIndex);
     }
 
     // Close expanded card when pressing ESC
@@ -198,13 +259,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Handle close button click
-    const closeButton = document.getElementById('close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function() {
-            const selectedImageContainer = document.querySelector('.image-viewer');
-            selectedImageContainer.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+    // Close button for character viewer
+    const closeCharacterBtn = document.getElementById('close-character-viewer');
+    if (closeCharacterBtn) {
+        closeCharacterBtn.addEventListener('click', function() {
+            const characterViewer = document.querySelector('.character-viewer');
+            const contentContainer = document.querySelector('.content-container');
+            characterViewer.style.display = 'none';
+            contentContainer.style.display = 'block';
         });
     }
+
+    // Close button for gallery viewer
+    document.querySelector('.image-viewer').addEventListener('click', function(e) {
+        if (e.target.classList.contains('close-button')) {
+            const imageViewer = document.querySelector('.image-viewer');
+            const galleryGrid = document.querySelector('.gallery-grid');
+            imageViewer.style.display = 'none';
+            galleryGrid.style.display = 'grid';
+        }
+    });
+
+    // Close viewers with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCharacterViewer();
+            showGallery();
+        }
+    });
 });

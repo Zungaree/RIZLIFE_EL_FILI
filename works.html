@@ -121,6 +121,26 @@
                             <div class="character-name">Kabesang Tale</div>
                         </div>
                     </div>
+
+                    <!-- Character viewer -->
+                    <div class="character-viewer" style="display: none;">
+                        <button class="close-button" onclick="closeCharacterViewer()"><i class="fas fa-times"></i></button>
+                        <button class="nav-button prev-char" id="prev-char"><i class="fas fa-chevron-left"></i></button>
+                        <div class="character-detail">
+                            <div class="character-info">
+                                <div class="character-header">
+                                    <span class="character-type">PROTAGONIST</span>
+                                    <h2 id="character-title"></h2>
+                                    <h3 id="character-subtitle">Crisóstomo Ibarra</h3>
+                                    <p id="character-description"></p>
+                                </div>
+                            </div>
+                            <div class="character-image-container">
+                                <img id="viewer-character" src="" alt="Selected Character">
+                            </div>
+                        </div>
+                        <button class="nav-button next-char" id="next-char"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
