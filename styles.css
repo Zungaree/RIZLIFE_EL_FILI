@@ -602,11 +602,11 @@ footer {
 
 /* Updated Historical Context styles */
 .history-section {
+    margin-bottom: 2rem;
+    padding: 2rem;
     background-color: #FBF7F0;
     border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     transition: transform 0.3s ease;
 }
 
@@ -615,27 +615,29 @@ footer {
 }
 
 .history-section h1 {
-    color: #83615F;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
+    color: #6D4C41;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(109, 76, 76, 0.1);
 }
 
 .history-section .icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    background-color: #83615F;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #6D4C41;
     border-radius: 50%;
     color: #FBF7F0;
 }
 
 .history-section .icon i {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .history-section p {
@@ -1211,4 +1213,37 @@ footer {
 .nav-button.next-char:hover {
     color: #8B6B61;
     transform: translateY(-50%) scale(1.1);
+}
+
+/* Resources page styles */
+.resource-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.resource-list li {
+    position: relative;
+    padding: 0.8rem 0 0.8rem 2rem;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(109, 76, 76, 0.1);
+}
+
+.resource-list li:last-child {
+    border-bottom: none;
+}
+
+.resource-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0.8rem;
+    color: #6D4C41;
+}
+
+.resource-list li:hover {
+    background-color: rgba(109, 76, 76, 0.05);
+    padding-left: 2.5rem;
+    transition: all 0.3s ease;
 } 
