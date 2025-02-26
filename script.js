@@ -1,7 +1,7 @@
 let currentImageIndex = 0;
 const galleryItems = [
     { 
-        src: 'legacy/1L.webp', 
+        src: 'legacy/1L.jpg', 
         caption: 'Jose Rizal\'s "El Filibusterismo"',
         desc: 'The first edition cover of El Filibusterismo, published in 1891 in Ghent, Belgium. This novel served as a crucial critique of Spanish colonial rule.'
     },
@@ -12,8 +12,8 @@ const galleryItems = [
     },
     { 
         src: 'legacy/4L.jpg', 
-        caption: 'Adaptations and Cultural Depiction',
-        desc: 'Various adaptations of El Filibusterismo across different media, demonstrating its enduring influence on Philippine culture and education.'
+        caption: 'Marians El Filibusterismo',
+        desc: 'The image is a promotional poster for El Filibusterismo: The Reign of Greed, a Grade 10-Our Lady of Pillar adaptation of José Rizal\'s novel, showcasing its themes of identity and revolution.'
     },
     { 
         src: 'legacy/3L.jpg', 
@@ -22,33 +22,29 @@ const galleryItems = [
     },
     { 
         src: 'world/1W.jpg', 
-        caption: 'Life Under Spanish Rule',
-        desc: 'During the Spanish colonial period, the Philippines was marked by social inequality, strict religious control, and oppressive governance.'
+        caption: 'Sa Ibabaw ng Kubyerta',
+        desc: 'Inspired by Leonardo Tayao Cruz’s paintings, “Sa Ibabaw ng Kubyerta” depicts the social stratification evident since the Spanish Colonial Rule in the Philippines.'
     },
     { 
         src: 'world/2W.jpg', 
-        caption: 'Map of 19th-Century Philippines Manila',
-        desc: 'Spanish map of Manila and suburbs from 1898, showing the urban landscape that served as the setting for many scenes in El Filibusterismo.'
+        caption: 'Reignite: An El Filibusterismo Art Exhibit Branding',
+        desc: 'Reignite is a solo art exhibit by Danielle Llemos, a Multimedia Arts and Sciences student, for her thesis at Mapua University. This event was held on May 17, 2017 (Wed, 3pm-9pm) at Prism Gallery, Makati.'
     },
     { 
         src: 'world/3W.jpg', 
-        caption: 'Social Classes and Power Structures',
-        desc: 'The Philippines had a rigid caste system, where Spanish elites and clergy dominated, while Filipinos had limited rights and opportunities.'
+        caption: 'Gomburza painting by UP alumna Virginia Flor-Agbayani, 1963.',
+        desc: 'Rizal dedicated his novel, "El Filibusterismo," in memory of secular priests Jose Burgos, Mariano Gomez, and Jacinto Zamora who are collectively known as Gomburza. They were executed at Bagumbayan in 1872.'
     },
     { 
         src: 'world/4W.png', 
         caption: 'Landmarks from the Novel',
-        desc: 'Right photo shows the Pansiteria Macanista de Buen Gusto (highlighted) near the Binondo church in 1899. Left photo shows the current state of the restaurant mentioned by Jose Rizal in his novel "El Filibusterismo."'
+        desc: 'Photo shows the current state of the Pansiteria Macanista de Buen Gusto mentioned by national hero Jose Rizal in his novel, ‘El Filibusterismo.’ '
     },
+
     { 
-        src: 'legacy/3L.jpg', 
-        caption: 'Memorials and Monuments',
-        desc: 'Historical markers and monuments commemorating the places where Rizal wrote and published El Filibusterismo.'
-    },
-    { 
-        src: 'legacy/plaque.jpg', 
-        caption: 'Memorials and Monuments',
-        desc: 'Historical plaque marking the location where Rizal worked on El Filibusterismo, preserving the memory of its creation.'
+        src: 'world/5W.jpg', 
+        caption: 'El Filibusterismo: A Modern Illustrated Adaptation',
+        desc: 'The image is a contemporary illustrated adaptation of El Filibusterismo by Dr. José P. Rizal, featuring character designs by Crisostomo and Giron, with writing by Grace R. Miranda, bringing the novel\'s revolutionary themes to life.'
     }
 ];
 

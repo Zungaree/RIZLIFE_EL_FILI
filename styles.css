@@ -54,6 +54,16 @@ main {
 .logo-text {
     color: white;
     font-size: 1.19rem;
+    cursor: pointer;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo a:hover {
+    color: inherit;
 }
 
 .nav-links {
@@ -1008,7 +1018,7 @@ footer {
     right: 1rem;
     background: none;
     border: none;
-    color: #FFFFFF; /* Changed to white for better visibility */
+    color: #83615F; /* Changed to white for better visibility */
     font-size: 2rem; /* Increased size */
     cursor: pointer;
     padding: 0.5rem;
@@ -1017,7 +1027,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Added shadow for better contrast */
+    
 }
 
 #close-button:hover {
@@ -1193,7 +1203,7 @@ footer {
     right: 1rem;
     background: none;
     border: none;
-    color: #FFFFFF; /* Changed to white for better visibility */
+    color: #83615F; /* Changed to white for better visibility */
     font-size: 2rem; /* Increased size */
     cursor: pointer;
     padding: 0.5rem;
@@ -1202,7 +1212,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Added shadow for better contrast */
+    
 }
 
 .close-button:hover {
