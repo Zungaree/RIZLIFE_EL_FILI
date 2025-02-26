@@ -15,7 +15,7 @@ const characters = [
         subtitle: 'Crisóstomo Ibarra',
         type: 'PROTAGONIST',
         image: 'SIMOUN.png',
-        description: 'Simoun is the protagonist of the novel and the alter ego of Crisóstomo Ibarra. Unlike the hopeful reformist in Noli Me Tángere, Simoun has become disillusioned with the idea of peaceful change. His transformation into a shadowy figure seeking revenge reflects the harsh realities of Spanish colonial rule, which crushed idealism and turned some individuals toward radical solutions.'
+        description: "Simoun is the protagonist of the novel and the alter ego of Crisóstomo Ibarra. Unlike the hopeful reformist in Noli Me Tángere, Simoun has become disillusioned with the idea of peaceful change. His transformation into a shadowy figure seeking revenge reflects the harsh realities of Spanish colonial rule, which crushed idealism and turned some individuals toward radical solutions. Despite his intelligence and wealth, his plans ultimately fail, highlighting the complexities and consequences of seeking justice through violence. His tragic end underscores Rizal's warning about the dangers of extremism and misplaced vengeance."
     },
     {
         name: 'Basilio',
@@ -36,7 +36,7 @@ const characters = [
         subtitle: 'Former Cabeza de Barangay',
         type: 'SUPPORTING CHARACTER',
         image: 'TALES.png',
-        description: 'A former cabeza de barangay who loses his land to the friars, representing the injustices faced by Filipino landowners under Spanish rule.'
+        description: 'Kabesang Tales is a former tenant farmer who rises to prominence as a respected figure in his community. Initially hardworking and law-abiding, he becomes a victim of Spanish colonial abuses when friars unjustly seize his land. Despite legal efforts to reclaim his property, he is repeatedly exploited and oppressed. After experiencing personal tragedies, including the abduction of his daughter and the murder of his father, he turns to rebellion, becoming a feared outlaw. Kabesang Tales represents the plight of the Filipino peasantry, highlighting how oppression can push even the most honest individuals toward violent resistance.'
     }
 ];
 
@@ -113,12 +113,53 @@ function closeCharacterViewer() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            // Toggle menu icon
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.navbar')) {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        }
+    });
+
+    // Mobile dropdown toggle
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown-content');
+        
+        if (window.innerWidth <= 768) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+    });
+
     // Get the hash from URL (e.g., #introduction or #biography)
-    const hash = window.location.hash || '#introduction';
+    let hash = window.location.hash || '#introduction';
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
     
     function switchTab(tabId) {
+        // Remove the # if it exists
+        tabId = tabId.replace('#', '');
+        
         // Update tabs
         tabs.forEach(tab => {
             tab.classList.remove('active');
@@ -127,28 +168,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update content with animation
+        // Update content
         contents.forEach(content => {
+            content.classList.remove('active');
             if(content.id === tabId + '-content') {
-                // Reset animation
-                content.style.opacity = '0';
-                content.style.transform = 'translateY(20px)';
                 content.classList.add('active');
-                
-                // Trigger reflow to restart animation
-                content.offsetHeight;
-                
-                // Start animation
-                content.style.opacity = '1';
-                content.style.transform = 'translateY(0)';
-            } else {
-                content.classList.remove('active');
             }
         });
     }
 
     // Initial load - switch to correct tab based on URL
-    switchTab(hash.replace('#', ''));
+    if (hash) {
+        switchTab(hash);
+    }
 
     // Handle tab clicks
     tabs.forEach(tab => {
@@ -156,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const tabId = this.getAttribute('href').split('#')[1];
             switchTab(tabId);
+            // Update URL without page reload
             window.history.pushState(null, '', `#${tabId}`);
         });
     });
@@ -163,27 +196,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle dropdown link clicks
     document.querySelectorAll('.tab-link').forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const tabId = this.dataset.tab;
-            const targetPage = this.getAttribute('href').split('#')[0]; // Get the target page
-            window.location.href = targetPage + '#' + tabId; // Redirect to the target page with the correct hash
+            const targetPage = this.getAttribute('href').split('#')[0];
+            const tabId = this.getAttribute('href').split('#')[1];
+            
+            // If we're already on the target page, just switch tabs
+            if (window.location.pathname.endsWith(targetPage)) {
+                e.preventDefault();
+                switchTab(tabId);
+                window.history.pushState(null, '', `#${tabId}`);
+            }
+            // Otherwise, let the navigation happen normally
         });
     });
 
     // Handle browser back/forward buttons
     window.addEventListener('popstate', function() {
         const newHash = window.location.hash || '#introduction';
-        switchTab(newHash.replace('#', ''));
+        switchTab(newHash);
     });
 
     // Character card interactions
     const characterCards = document.querySelectorAll('.character-card');
+    if (characterCards.length > 0) {
+        characterCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const characterName = this.querySelector('.character-name').textContent;
+                const characterImage = this.querySelector('img').src;
+                showCharacterViewer(characterName, characterImage);
+            });
+        });
+    }
 
-    characterCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const characterName = this.querySelector('.character-name').textContent;
-            const characterImage = this.querySelector('img').src;
-            showCharacterViewer(characterName, characterImage);
+    // Gallery functionality
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems.length > 0) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imageSrc = this.querySelector('img').src;
+                showImage(imageSrc);
+            });
+        });
+    }
+
+    // Ensure home link works properly
+    const homeLink = document.getElementById('home-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', function(e) {
+            if (window.location.pathname.endsWith('home.html')) {
+                e.preventDefault();
+                switchTab('introduction');
+                window.history.pushState(null, '', '#introduction');
+            }
+        });
+    }
+
+    // Fix navigation for works section
+    const worksLinks = document.querySelectorAll('.nav-item a[href="#"]');
+    worksLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
         });
     });
 
@@ -238,25 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeCard(expandedCard);
             }
         }
-    });
-
-    // Prevent default navigation for Home and Works links
-    document.getElementById('home-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        // Optionally, you can add logic here to show the home content without redirecting
-    });
-
-    document.getElementById('works-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        // Optionally, you can add logic here to show the works content without redirecting
-    });
-
-    // Handle gallery item clicks
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const imageSrc = this.querySelector('img').src; // Get the image source from the clicked item
-            showImage(imageSrc);
-        });
     });
 
     // Close button for character viewer

@@ -15,28 +15,31 @@
             <img src="rizal-portrait.jpg" alt="Rizal Portrait">
             <span class="logo-text">The Life of Rizal</span>
         </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links">
             <div class="nav-item">
-                <a href="#">Home ▼</a>
+                <a href="home.html">Home ▼</a>
                 <div class="dropdown-content">
-                    <a href="home.html#introduction" class="tab-link" data-tab="introduction">Introduction</a>
-                    <a href="home.html#biography" class="tab-link" data-tab="biography">Biography</a>
+                    <a href="home.html#introduction">Introduction</a>
+                    <a href="home.html#biography">Biography</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Works ▼</a>
+                <a href="works.html">Works ▼</a>
                 <div class="dropdown-content">
-                    <a href="works.html#historical" class="tab-link" data-tab="historical">Historical Context</a>
-                    <a href="works.html#plot" class="tab-link" data-tab="plot">Plot Summary</a>
-                    <a href="works.html#characters" class="tab-link" data-tab="characters">Key Characters</a>
+                    <a href="works.html#historical">Historical Context</a>
+                    <a href="works.html#plot">Plot Summary</a>
+                    <a href="works.html#characters">Key Characters</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Analysis ▼</a>
+                <a href="analysis.html">Analysis ▼</a>
                 <div class="dropdown-content">
-                    <a href="analysis.html#enduring" class="tab-link" data-tab="enduring">Enduring Relevance</a>
-                    <a href="analysis.html#education" class="tab-link" data-tab="education">Education and Reform</a>
-                    <a href="analysis.html#inspiring" class="tab-link" data-tab="inspiring">Critical Thinking</a>
+                    <a href="analysis.html#enduring">Enduring Relevance</a>
+                    <a href="analysis.html#education">Education and Reform</a>
+                    <a href="analysis.html#inspiring">Critical Thinking</a>
                 </div>
             </div>
             <a href="gallery.html">Gallery</a>
@@ -46,9 +49,9 @@
 
     <main class="home-content">
         <div class="tab-navigation">
-            <a href="works.html#historical" class="tab active" id="historical-tab">Historical Context</a>
-            <a href="works.html#plot" class="tab" id="plot-tab">Plot Summary</a>
-            <a href="works.html#characters" class="tab" id="characters-tab">Key Characters</a>
+            <a href="#historical" class="tab active" id="historical-tab">Historical Context</a>
+            <a href="#plot" class="tab" id="plot-tab">Plot Summary</a>
+            <a href="#characters" class="tab" id="characters-tab">Key Characters</a>
         </div>
 
         <div class="content-box">
@@ -142,9 +145,9 @@
                                     <p id="character-description"></p>
                                 </div>
                             </div>
-                            <div class="character-image-container">
+                            
                                 <img id="viewer-character" src="" alt="Selected Character">
-                            </div>
+                            
                         </div>
                         <button class="nav-button next-char" id="next-char"><i class="fas fa-chevron-right"></i></button>
                     </div>
