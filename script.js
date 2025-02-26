@@ -17,7 +17,7 @@ const galleryItems = [
     },
     { 
         src: 'legacy/3L.jpg', 
-        caption: 'Memorials and Monuments',
+        caption: 'Memorials and Monuments in Ghent',
         desc: 'A marker for the building where Jose Rizal stayed in Ghent when El Filibusterismo was printed.'
     },
     { 
@@ -37,7 +37,7 @@ const galleryItems = [
     },
     { 
         src: 'world/4W.png', 
-        caption: 'Landmarks from the Novel',
+        caption: 'Panciteria Macanista de Buen Gusto',
         desc: 'Photo shows the current state of the Pansiteria Macanista de Buen Gusto mentioned by national hero Jose Rizal in his novel, ‘El Filibusterismo.’ '
     },
 
