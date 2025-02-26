@@ -1,11 +1,55 @@
 let currentImageIndex = 0;
 const galleryItems = [
-    { src: 'DZ-BT06_Product.jpg', caption: 'First edition cover of El Filibusterismo' },
-    { src: '1bav.webp', caption: 'Portrait of José Rizal' },
-    { src: '3overlord.png', caption: 'Portrait of José Rizal' },
-    { src: '20241217_Slide18.jpg', caption: 'Original manuscript page' },
-    { src: 'granblue.png', caption: 'Rizal writing El Filibusterismo' },
-    { src: 'NAO.jpg', caption: 'Historical photo from the period' }
+    { 
+        src: 'legacy/1L.webp', 
+        caption: 'Jose Rizal\'s "El Filibusterismo"',
+        desc: 'The first edition cover of El Filibusterismo, published in 1891 in Ghent, Belgium. This novel served as a crucial critique of Spanish colonial rule.'
+    },
+    { 
+        src: 'legacy/2L.jpg', 
+        caption: 'Jose Rizal\'s Handwritten Manuscript',
+        desc: 'Original manuscript pages of El Filibusterismo, showcasing Rizal\'s handwriting and the development of his ideas during the writing process.'
+    },
+    { 
+        src: 'legacy/4L.jpg', 
+        caption: 'Adaptations and Cultural Depiction',
+        desc: 'Various adaptations of El Filibusterismo across different media, demonstrating its enduring influence on Philippine culture and education.'
+    },
+    { 
+        src: 'legacy/3L.jpg', 
+        caption: 'Memorials and Monuments',
+        desc: 'A marker for the building where Jose Rizal stayed in Ghent when El Filibusterismo was printed.'
+    },
+    { 
+        src: 'world/1W.jpg', 
+        caption: 'Life Under Spanish Rule',
+        desc: 'During the Spanish colonial period, the Philippines was marked by social inequality, strict religious control, and oppressive governance.'
+    },
+    { 
+        src: 'world/2W.jpg', 
+        caption: 'Map of 19th-Century Philippines Manila',
+        desc: 'Spanish map of Manila and suburbs from 1898, showing the urban landscape that served as the setting for many scenes in El Filibusterismo.'
+    },
+    { 
+        src: 'world/3W.jpg', 
+        caption: 'Social Classes and Power Structures',
+        desc: 'The Philippines had a rigid caste system, where Spanish elites and clergy dominated, while Filipinos had limited rights and opportunities.'
+    },
+    { 
+        src: 'world/4W.png', 
+        caption: 'Landmarks from the Novel',
+        desc: 'Right photo shows the Pansiteria Macanista de Buen Gusto (highlighted) near the Binondo church in 1899. Left photo shows the current state of the restaurant mentioned by Jose Rizal in his novel "El Filibusterismo."'
+    },
+    { 
+        src: 'legacy/3L.jpg', 
+        caption: 'Memorials and Monuments',
+        desc: 'Historical markers and monuments commemorating the places where Rizal wrote and published El Filibusterismo.'
+    },
+    { 
+        src: 'legacy/plaque.jpg', 
+        caption: 'Memorials and Monuments',
+        desc: 'Historical plaque marking the location where Rizal worked on El Filibusterismo, preserving the memory of its creation.'
+    }
 ];
 
 let currentCharacterIndex = 0;
@@ -53,10 +97,12 @@ function showImage(imageSrc) {
     const imageViewer = document.querySelector('.image-viewer');
     const viewerImage = document.getElementById('viewer-image');
     const viewerCaption = imageViewer.querySelector('.gallery-caption');
+    const viewerDescription = imageViewer.querySelector('.gallery-description');
     
-    // Update image and caption
+    // Update image, caption and description
     viewerImage.src = imageSrc;
     viewerCaption.textContent = galleryItems[currentImageIndex].caption;
+    viewerDescription.textContent = galleryItems[currentImageIndex].desc;
     
     // Show the viewer
     imageViewer.style.display = 'flex';
@@ -80,6 +126,7 @@ function showImage(imageSrc) {
         const item = galleryItems[currentImageIndex];
         viewerImage.src = item.src;
         viewerCaption.textContent = item.caption;
+        viewerDescription.textContent = item.desc;
     });
 
     newNextButton.addEventListener('click', function(e) {
@@ -88,6 +135,7 @@ function showImage(imageSrc) {
         const item = galleryItems[currentImageIndex];
         viewerImage.src = item.src;
         viewerCaption.textContent = item.caption;
+        viewerDescription.textContent = item.desc;
     });
 }
 
@@ -113,7 +161,6 @@ function closeCharacterViewer() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
@@ -131,25 +178,21 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) {
             navLinks.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            const icon = menuToggle?.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
         }
     });
 
-    // Mobile dropdown toggle
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        const link = item.querySelector('a');
-        const dropdown = item.querySelector('.dropdown-content');
-        
-        if (window.innerWidth <= 768) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            });
-        }
-    });
+    // Remove all mobile-specific dropdown handlers
+    if (window.innerWidth <= 768) {
+        const dropdownToggles = document.querySelectorAll('.nav-item > a');
+        dropdownToggles.forEach(toggle => {
+            toggle.style.pointerEvents = 'none';
+        });
+    }
 
     // Get the hash from URL (e.g., #introduction or #biography)
     let hash = window.location.hash || '#introduction';
@@ -201,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // If we're already on the target page, just switch tabs
             if (window.location.pathname.endsWith(targetPage)) {
-                e.preventDefault();
+            e.preventDefault();
                 switchTab(tabId);
                 window.history.pushState(null, '', `#${tabId}`);
             }
@@ -218,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Character card interactions
     const characterCards = document.querySelectorAll('.character-card');
     if (characterCards.length > 0) {
-        characterCards.forEach(card => {
+    characterCards.forEach(card => {
             card.addEventListener('click', function() {
                 const characterName = this.querySelector('.character-name').textContent;
                 const characterImage = this.querySelector('img').src;
@@ -339,4 +382,14 @@ document.addEventListener('DOMContentLoaded', function() {
             showGallery();
         }
     });
+
+    // Initialize the first tab to be open by default
+    document.querySelector(".tab-button").click();
 });
+
+// Add keyboard support for closing
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        showGallery();
+    }
+}); 

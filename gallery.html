@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +15,9 @@
             <img src="rizal-portrait.jpg" alt="Rizal Portrait">
             <span class="logo-text">The Life of Rizal</span>
         </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links">
             <div class="nav-item">
                 <a href="#">Home ▼</a>
@@ -47,61 +51,87 @@
         <div class="gallery-title" style="background-color: #83615F;">
             <h1>Gallery</h1>
         
+            
+
         
         <div class="gallery-grid">
-            <div class="gallery-item" onclick="showImage('DZ-BT06_Product.jpg')">
+
+            <div class="gallery-item" onclick="showImage('legacy/1L.webp')">
                 <div class="gallery-image-container">
-                    <img src="DZ-BT06_Product.jpg" alt="First edition cover of El Filibusterismo">
+                    <img src="legacy/1L.webp" alt="Historical Plaque">
                 </div>
-                <p class="gallery-caption">First edition cover of El Filibusterismo</p>
+                <p class="gallery-caption">Jose Rizal's "El Filibusterismo"</p>
             </div>
 
-            <div class="gallery-item" onclick="showImage('1bav.webp')">
+            <div class="gallery-item" onclick="showImage('legacy/2L.jpg')">
                 <div class="gallery-image-container">
-                    <img src="1bav.webp" alt="Portrait of José Rizal">
+                    <img src="legacy/2L.jpg" alt="Historical Plaque">
                 </div>
-                <p class="gallery-caption">Portrait of José Rizal</p>
+                <p class="gallery-caption">Jose Rizal's Handwritten Manuscript</p>
             </div>
 
-            <div class="gallery-item" onclick="showImage('3overlord.png')">
+            <div class="gallery-item" onclick="showImage('legacy/4L.jpg')">
                 <div class="gallery-image-container">
-                    <img src="3overlord.png" alt="Portrait of José Rizal">
+                    <img src="legacy/4L.jpg" alt="Legacy of El Filibusterismo">
                 </div>
-                <p class="gallery-caption">Portrait of José Rizal</p>
+                <p class="gallery-caption">Adaptations and Cultural Depiction</p>
             </div>
 
-            <div class="gallery-item" onclick="showImage('20241217_Slide18.jpg')">
+            <div class="gallery-item" onclick="showImage('legacy/3L.jpg')">
                 <div class="gallery-image-container">
-                    <img src="20241217_Slide18.jpg" alt="Original manuscript page">
+                    <img src="legacy/3L.jpg" alt="Legacy of El Filibusterismo">
                 </div>
-                <p class="gallery-caption">Original manuscript page</p>
+                <p class="gallery-caption">Memorials and Monuments</p>
             </div>
 
-            <div class="gallery-item" onclick="showImage('granblue.png')">
+            <div class="gallery-item" onclick="showImage('world/1W.jpg')">
                 <div class="gallery-image-container">
-                    <img src="granblue.png" alt="Rizal writing El Filibusterismo">
+                    <img src="world/1W.jpg" alt="World of El Filibusterismo - Historical Setting">
                 </div>
-                <p class="gallery-caption">Rizal writing El Filibusterismo</p>
+                <p class="gallery-caption">Life Under Spanish Rule</p>
             </div>
 
-            <div class="gallery-item" onclick="showImage('NAO.jpg')">
+            <div class="gallery-item" onclick="showImage('world/2W.jpg')">
                 <div class="gallery-image-container">
-                    <img src="NAO.jpg" alt="Historical photo from the period">
+                    <img src="world/2W.jpg" alt="World of El Fili - Social Structure">
                 </div>
-                <p class="gallery-caption">Historical photo from the period</p>
+                <p class="gallery-caption">Map of 19th-Century Philippines Manila</p>
             </div>
+
+            <div class="gallery-item" onclick="showImage('world/3W.jpg')">
+                <div class="gallery-image-container">
+                    <img src="world/3W.jpg" alt="World of El Fili - Political Climate">
+                </div>
+                <p class="gallery-caption">Social Classes and Power Structures</p>
+            </div>
+
+            <div class="gallery-item" onclick="showImage('world/4W.png')">
+                <div class="gallery-image-container">
+                    <img src="world/4W.png" alt="World of El Fili - Cultural Context">
+                </div>
+                <p class="gallery-caption">Landmarks from the Novel</p>
+            </div>
+
+            
+
+            
+            
         </div>
 
         <!-- Image viewer that replaces gallery grid -->
         <div class="image-viewer" style="display: none;">
-            
-            <button class="nav-button" id="prev-button">◄</button>
             <div class="gallery-image-container">
+            <button class="close-button" onclick="showGallery()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            
                 <img id="viewer-image" src="" alt="Selected Image">
                 <p class="gallery-caption"></p>
-            </div>
+                <p class="gallery-description"></p>
+            <button class="nav-button" id="prev-button">◄</button>
             <button class="nav-button" id="next-button">►</button>
-            <button class="close-button" onclick="showGallery()"><i class="fas fa-times"></i></button>
+        </div>
         </div>
     </div>
     </main>
